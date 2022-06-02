@@ -221,6 +221,8 @@ class Ui_MainWindow(object):
         #FUNCTIONS
         #
 
+        self.pushButton_close_popup.clicked.connect(lambda: self.frame_error.hide())
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
