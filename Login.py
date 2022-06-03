@@ -12,6 +12,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
 
+    stylePopupError = ("background-color: rgb(255, 0, 0); border-radius: 5px;")
+    stylePopupOk = ("background-color: rgb(0, 255, 123); border-radius: 5px;")
+
     styleLineEditOk = ("QLineEdit {\n"
 "    border: 2px solid rgb(45, 45, 45);\n"
 "    border-radius: 5px;\n"
@@ -73,11 +76,13 @@ class Ui_MainWindow(object):
         if textUser + textPassword != '':
                 text = textUser + textPassword
                 showMessage(text)
+                self.frame_error.setStyleSheet(self.stylePopupError)
         else:
                 text = " Login OK. "
                 if self.checkBox_save_user.isChecked():
                         text = text + " | Saver user: OK"
                 showMessage(text)
+                self.frame_error.setStyleSheet(self.stylePopupOk)
     
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -106,8 +111,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.frame_error = QtWidgets.QFrame(self.top_bar)
         self.frame_error.setMaximumSize(QtCore.QSize(350, 16777215))
-        self.frame_error.setStyleSheet("background-color: rgb(255, 0, 0);\n"
-"border-radius: 5px;")
+        self.frame_error.setStyleSheet(self.stylePopupOk)
         self.frame_error.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.frame_error.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_error.setObjectName("frame_error")
