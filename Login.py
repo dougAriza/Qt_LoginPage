@@ -31,18 +31,19 @@ class Ui_MainWindow(object):
                 textUser = ""
         # CHECK PASSWORD
         if not self.lineEdit_password.text():
-                text = " Password empty "
+                textPassword = " Password empty "
         else: 
                 textPassword = ""
 
         # CHECK FIELDS
         if textUser + textPassword != '':
                 text = textUser + textPassword
+                showMessage(text)
         else:
                 text = " Login OK. "
                 if self.checkBox_save_user.isChecked():
                         text = text + " | Saver user: OK"
-
+                showMessage(text)
     
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -259,6 +260,10 @@ class Ui_MainWindow(object):
 
         #HIDE ERROR
         self.frame_error.hide()
+
+        #BT LOGIN
+        self.pushButton_login.clicked.connect(self.checkFields)
+
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
