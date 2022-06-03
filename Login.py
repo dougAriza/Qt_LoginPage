@@ -11,6 +11,39 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindow(object):
+
+    #
+    # FUNCTIONS
+    # 
+        
+    def checkFields(self):
+        textUser = ""
+        textPassword = ""
+
+        def showMessage(message):
+                self.frame_error.show()
+                self.label_error.setText(message)
+
+        # CHECK USER
+        if not self.lineEdit_user.text():
+                textUser = " User empty "
+        else:
+                textUser = ""
+        # CHECK PASSWORD
+        if not self.lineEdit_password.text():
+                text = " Password empty "
+        else: 
+                textPassword = ""
+
+        # CHECK FIELDS
+        if textUser + textPassword != '':
+                text = textUser + textPassword
+        else:
+                text = " Login OK. "
+                if self.checkBox_save_user.isChecked():
+                        text = text + " | Saver user: OK"
+
+    
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(500, 700)
