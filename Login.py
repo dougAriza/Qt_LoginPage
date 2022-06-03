@@ -12,6 +12,36 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
 
+    styleLineEditOk = ("QLineEdit {\n"
+"    border: 2px solid rgb(45, 45, 45);\n"
+"    border-radius: 5px;\n"
+"    padding: 15px;\n"
+"    background-color: rgb(30, 30, 30);    \n"
+"    color: rgb(100, 100, 100);\n"
+"}\n"
+"QLineEdit:hover {\n"
+"    border: 2px solid rgb(55, 55, 55);\n"
+"}\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid rgb(255, 207, 0);\n"
+"    color: rgb(200, 200, 200);\n"
+"}")
+
+    styleLineEditError = ("QLineEdit {\n"
+"    border: 2px solid rgb(255, 0, 0);\n"
+"    border-radius: 5px;\n"
+"    padding: 15px;\n"
+"    background-color: rgb(30, 30, 30);    \n"
+"    color: rgb(100, 100, 100);\n"
+"}\n"
+"QLineEdit:hover {\n"
+"    border: 2px solid rgb(55, 55, 55);\n"
+"}\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid rgb(255, 207, 0);\n"
+"    color: rgb(200, 200, 200);\n"
+"}")
+
     #
     # FUNCTIONS
     # 
@@ -27,13 +57,17 @@ class Ui_MainWindow(object):
         # CHECK USER
         if not self.lineEdit_user.text():
                 textUser = " User empty "
+                self.lineEdit_user.setStyleSheet(self.styleLineEditError)
         else:
                 textUser = ""
+                self.lineEdit_user.setStyleSheet(self.styleLineEditOk)
         # CHECK PASSWORD
         if not self.lineEdit_password.text():
                 textPassword = " Password empty "
+                self.lineEdit_password.setStyleSheet(self.styleLineEditError)
         else: 
                 textPassword = ""
+                self.lineEdit_password.setStyleSheet(self.styleLineEditOk)
 
         # CHECK FIELDS
         if textUser + textPassword != '':
@@ -150,20 +184,7 @@ class Ui_MainWindow(object):
         font.setFamily("Segoe UI")
         font.setPointSize(10)
         self.lineEdit_user.setFont(font)
-        self.lineEdit_user.setStyleSheet("QLineEdit {\n"
-"    border: 2px solid rgb(45, 45, 45);\n"
-"    border-radius: 5px;\n"
-"    padding: 15px;\n"
-"    background-color: rgb(30, 30, 30);    \n"
-"    color: rgb(100, 100, 100);\n"
-"}\n"
-"QLineEdit:hover {\n"
-"    border: 2px solid rgb(55, 55, 55);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"    border: 2px solid rgb(255, 207, 0);\n"
-"    color: rgb(200, 200, 200);\n"
-"}")
+        self.lineEdit_user.setStyleSheet(self.styleLineEditOk)
         self.lineEdit_user.setMaxLength(32)
         self.lineEdit_user.setObjectName("lineEdit_user")
         self.lineEdit_password = QtWidgets.QLineEdit(self.login_area)
